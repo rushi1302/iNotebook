@@ -13,13 +13,16 @@ const NoteState = (props) => {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ4NzdhMmI0NGFlNmNkYzhlNmJmYTk3In0sImlhdCI6MTY4NjYwMDI1OX0.5q3XZuZwpypn75rYQ0tMG4WuZpnydbH597xjl3wPcvw"
+                "auth-token": localStorage.getItem('token')
             }
         });
         const json = await response.json()
         console.log(json)
         setNotes(json)
     }
+
+    //  add Note
+
     const addNote = async (title, description, tag) => {
         // TODO: API Call
         // API Call 
@@ -27,7 +30,7 @@ const NoteState = (props) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ4NzdhMmI0NGFlNmNkYzhlNmJmYTk3In0sImlhdCI6MTY4NjYwMDI1OX0.5q3XZuZwpypn75rYQ0tMG4WuZpnydbH597xjl3wPcvw"
+                "auth-token": localStorage.getItem('token')
             },
             body: JSON.stringify({ title, description, tag })
         });
@@ -35,6 +38,7 @@ const NoteState = (props) => {
         setNotes(notes.concat(note))
     }
 
+    // delete note
 
     const deleteNote = async (id) => {
         // TODO: API Call
@@ -42,7 +46,7 @@ const NoteState = (props) => {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ4NzdhMmI0NGFlNmNkYzhlNmJmYTk3In0sImlhdCI6MTY4NjYwMDI1OX0.5q3XZuZwpypn75rYQ0tMG4WuZpnydbH597xjl3wPcvw"
+                "auth-token": localStorage.getItem('token')
             },
 
         });
@@ -53,6 +57,7 @@ const NoteState = (props) => {
         setNotes(newNotes)
     }
 
+    // edit note
 
     const editNote = async (id, title, description, tag) => {
         // API Call 
@@ -60,7 +65,7 @@ const NoteState = (props) => {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ4NzdhMmI0NGFlNmNkYzhlNmJmYTk3In0sImlhdCI6MTY4NjYwMDI1OX0.5q3XZuZwpypn75rYQ0tMG4WuZpnydbH597xjl3wPcvw"
+                "auth-token": localStorage.getItem('token')
             },
             body: JSON.stringify({ title, description, tag })
         });
